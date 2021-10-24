@@ -1,5 +1,5 @@
 # spwn-physics
-a simple library to add physics to spwn
+a simple (and pretty bad) library to add physics to spwn
 
 ## commands and arguments:
 ```
