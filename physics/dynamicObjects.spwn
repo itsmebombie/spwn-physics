@@ -1,0 +1,78 @@
+extract obj_props
+f1 = import "staticObject.spwn"
+let objects = []
+
+add = (objInfo) {
+    x1 = 90; x2 = 0; x3 = 60; x4 = 30; x5 = 0; x6 = 0;
+    y1 = -90; y2 = -90; y3 = -90; y4 = -90; y5 = -60; y6 = -120;
+
+    group1 = ?g
+    group2 = ?g
+    $.add(obj { //add move1 trigger
+        OBJ_ID: 901,//move trigger id
+        X: x1,
+        Y: y1,
+        DURATION: 0,
+        MOVE_Y: -(objInfo[2]),
+        GROUPS: group2,
+        TARGET: objInfo[0],
+        SPAWN_TRIGGERED: true,
+        MULTI_TRIGGER: true,
+    })
+    $.add(obj { //add loop switch trigger
+        OBJ_ID: 1268,//spawn trigger id
+        X: x2,
+        Y: y2,
+        TARGET: group1,
+    })
+    $.add(obj { //add loop2 trigger
+        OBJ_ID: 1268,//spawn trigger id
+        X: x3,
+        Y: y3,
+        SPAWN_DURATION: 0.02,
+        GROUPS: group2,
+        TARGET: group1,
+        SPAWN_TRIGGERED: true,
+        MULTI_TRIGGER: true,
+    })
+    $.add(obj { //add loop1 trigger
+        OBJ_ID: 1268,//spawn trigger id
+        X: x4,
+        Y: y4,
+        GROUPS: group1,
+        TARGET: group2,
+        SPAWN_TRIGGERED: true,
+        MULTI_TRIGGER: true,
+    })
+    $.add(obj { //add collision1 trigger
+        OBJ_ID: 1815,//collision trigger id
+        X: x5,
+        Y: y5,
+        BLOCK_A: objInfo[1],
+        BLOCK_B: f1(1b),
+        TARGET: group1,
+    })
+    $.add(obj { //add collision2 trigger
+        OBJ_ID: 1815,//collision trigger id
+        X: x6,
+        Y: y6,
+        BLOCK_A: objInfo[1],
+        BLOCK_B: f1(1b),
+        TARGET: group1,
+        ACTIVATE_GROUP: true,
+        ACTIVATE_ON_EXIT: true,
+    })
+}
+function = (objectGroup = 0g, objectCollisionGroup = 0b, weight = 2) {
+    if objectGroup == 0g {
+        return objects 
+    } else if objectCollisionGroup == 0b {
+        return objects 
+    } else {
+        objects.push([objectGroup, objectCollisionGroup, weight])
+        add([objectGroup, objectCollisionGroup, weight])
+        return objects 
+    }
+}
+
+return function

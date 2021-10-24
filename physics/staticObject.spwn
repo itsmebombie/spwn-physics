@@ -1,0 +1,16 @@
+let object = null
+
+function = (objId = 0b) {
+    if objId == 0b {
+        return object 
+    } else {
+        if objId.type == @block {
+            object = objId
+            return object 
+        } else {
+           return null 
+        }
+    }
+}
+
+return function
