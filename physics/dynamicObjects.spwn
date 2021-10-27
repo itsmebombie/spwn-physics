@@ -3,59 +3,50 @@ f1 = import "staticObject.spwn"
 let objects = []
 
 add = (objInfo) {
-    x1 = 90; x2 = 0; x3 = 60; x4 = 30; x5 = 0; x6 = 0;
-    y1 = -90; y2 = -90; y3 = -90; y4 = -90; y5 = -60; y6 = -120;
+    x1 = 60; x2 = 00; x3 = 00; x4 = 30; x5 = 90;
+    y1 = -90; y2 = -60; y3 = -120; y4 = -90; y5 = -90;
 
     group1 = ?g
     group2 = ?g
-    $.add(obj { //add move1 trigger
-        OBJ_ID: 901,//move trigger id
-        X: x1,
-        Y: y1,
-        DURATION: 0,
-        MOVE_Y: -(objInfo[2]),
-        GROUPS: group2,
-        TARGET: objInfo[0],
-        SPAWN_TRIGGERED: true,
-        MULTI_TRIGGER: true,
-    })
-    $.add(obj { //add loop switch trigger
-        OBJ_ID: 1268,//spawn trigger id
-        X: x2,
-        Y: y2,
-        TARGET: group1,
-    })
-    $.add(obj { //add loop2 trigger
-        OBJ_ID: 1268,//spawn trigger id
-        X: x3,
-        Y: y3,
-        SPAWN_DURATION: 0.02,
-        GROUPS: group2,
-        TARGET: group1,
-        SPAWN_TRIGGERED: true,
-        MULTI_TRIGGER: true,
-    })
-    $.add(obj { //add loop1 trigger
+    $.add(obj { //add spawn trigger
         OBJ_ID: 1268,//spawn trigger id
         X: x4,
         Y: y4,
+        TARGET: group1,
+    })
+    $.add(obj { //add stop trigger
+        OBJ_ID: 1616,//stop trigger id
+        X: x5,
+        Y: y5,
+        GROUPS: group2,
+        TARGET: group1,
+        SPAWN_TRIGGERED: true,
+        MULTI_TRIGGER: true,
+    })
+    $.add(obj { //add move trigger
+        OBJ_ID: 901,//move trigger id
+        X: x1,
+        Y: y1,
+        DURATION: 500 + (1/$.exp(objInfo[2]/10))*2000,
+        MOVE_Y: -300000,
         GROUPS: group1,
-        TARGET: group2,
+        TARGET: objInfo[0],
         SPAWN_TRIGGERED: true,
         MULTI_TRIGGER: true,
     })
     $.add(obj { //add collision1 trigger
         OBJ_ID: 1815,//collision trigger id
-        X: x5,
-        Y: y5,
+        X: x2,
+        Y: y2,
         BLOCK_A: objInfo[1],
         BLOCK_B: f1(1b),
-        TARGET: group1,
+        TARGET: group2,
+        ACTIVATE_GROUP: true,
     })
     $.add(obj { //add collision2 trigger
         OBJ_ID: 1815,//collision trigger id
-        X: x6,
-        Y: y6,
+        X: x3,
+        Y: y3,
         BLOCK_A: objInfo[1],
         BLOCK_B: f1(1b),
         TARGET: group1,
