@@ -37,9 +37,9 @@ here's an example to help with the writing code part:
 p = import physics //imports the library
 
 p.dynamicObjects(1g,1b,10) //sets the dynamic object's group to "1g", sets it's bottom collision group to "1b" and it's weight to "10", this will be the dynamic object
-p.dynamicObjects(2g,2b,20) //adds another dynamic object with it's group being "2g", it's bottom collision group being "2b" and it's weight being "20"
+p.dynamicObjects(2g,4b,20) //adds another dynamic object with it's group being "2g", it's bottom collision group being "2b" and it's weight being "20"
 p.staticObject(3b) //sets the static object's collision group to "3b", this will be the object that the falling object will fall on
-p.velocity(1g,1b,6,15,20,1) //sets the dynamic object's group to "1g", sets it's full block collision group to "3b", the amount it will move on the x axis to "6 * 50", the amount of movement on the y axis to "15 * 10", it's weight to "20" and the duration to "1"
+p.velocity(1g,2b,6,15,20,1) //sets the dynamic object's group to "1g", sets it's full block collision group to "3b", the amount it will move on the x axis to "6 * 50", the amount of movement on the y axis to "15 * 10", it's weight to "20" and the duration to "1"
 
 $.print(p.staticObject()) //prints the static object's properties (in this case it will print "3b")
 $.print(p.dynamicObjects()) //prints all of the dynamic and their properties (in this case it will print "{1g: [1g,1b,10],2g: [2g,2b,20]}")
