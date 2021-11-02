@@ -1,6 +1,7 @@
 let object = null
-
+// $.print("staticObject.spwn")
 function = (objId = 0b) {
+    
     if objId == 0b {
         return object 
     } else {
