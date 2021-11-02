@@ -1,17 +1,18 @@
 extract obj_props
+// $.print("dynamicObjects.spwn")
 f1 = import "staticObject.spwn"
-let objects = []
+let objects = {}
 
 add = (objInfo) {
-    x1 = 60; x2 = 00; x3 = 00; x4 = 30; x5 = 90;
-    y1 = -90; y2 = -60; y3 = -120; y4 = -90; y5 = -90;
+    x1 = 00; x2 = 30; x3 = 60; x4 = 90; x5 = 120;
+    y1 = -90; y2 = -90; y3 = -90; y4 = -90; y5 = -90;
 
     group1 = ?g
     group2 = ?g
     $.add(obj { //add spawn trigger
         OBJ_ID: 1268,//spawn trigger id
-        X: x4,
-        Y: y4,
+        X: x1,
+        Y: y1,
         TARGET: group1,
     })
     $.add(obj { //add stop trigger
@@ -25,8 +26,8 @@ add = (objInfo) {
     })
     $.add(obj { //add move trigger
         OBJ_ID: 901,//move trigger id
-        X: x1,
-        Y: y1,
+        X: x4,
+        Y: y4,
         DURATION: 500 + (1/$.exp(objInfo[2]/10))*2000,
         MOVE_Y: -300000,
         GROUPS: group1,
@@ -54,14 +55,12 @@ add = (objInfo) {
         ACTIVATE_ON_EXIT: true,
     })
 }
-function = (objectGroup = 0g, objectCollisionGroup = 0b, weight = 2) {
+function = (objectGroup = 0g, bottomObjectCollisionGroup = 0b, weight = 2) {
     if objectGroup == 0g {
         return objects 
-    } else if objectCollisionGroup == 0b {
-        return objects 
     } else {
-        objects.push([objectGroup, objectCollisionGroup, weight])
-        add([objectGroup, objectCollisionGroup, weight])
+        objects[objectGroup as @string] = [objectGroup, bottomObjectCollisionGroup, weight]
+        add([objectGroup, bottomObjectCollisionGroup, weight])
         return objects 
     }
 }
