@@ -1,4 +1,5 @@
 let f1 = import "staticObject.spwn"
 let f2 = import "dynamicObjects.spwn"
+let f3 = import "velocity.spwn"
 
-return {staticObject: f1, dynamicObjects: f2}
+return {staticObject: f1, dynamicObjects: f2, velocity: f3}
