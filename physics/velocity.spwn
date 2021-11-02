@@ -1,0 +1,60 @@
+extract obj_props
+// f1 = import "staticObject.spwn"
+let velocities = {}
+
+add = (objInfo) {
+    x1 = 00; x2 = 30; x3 = 60; x4 = 90; x5 = 120;
+    y1 = -60; y2 = -60; y3 = -60; y4 = -60; y5 = -60;
+
+    group1 = ?g
+    group2 = ?g
+    $.add(obj { //add spawn trigger, this trigger can be moved where you want the velocity to happen
+        OBJ_ID: 1268,//spawn trigger id
+        X: x5,
+        Y: y5,
+        TARGET: group1,
+    })
+    $.add(obj { //add stop trigger
+        OBJ_ID: 1616,//stop trigger id
+        X: x4,
+        Y: y4,
+        GROUPS: group2,
+        TARGET: group1,
+        SPAWN_TRIGGERED: true,
+        MULTI_TRIGGER: true,
+    })
+    $.add(obj { //add move trigger
+        OBJ_ID: 901,//move trigger id
+        X: x1,
+        Y: y1,
+        DURATION: objInfo[5],
+        MOVE_X: (objInfo[2] * 10) - objInfo[4],
+        MOVE_Y: (objInfo[3] * 10) - objInfo[4],
+        GROUPS: group1,
+        TARGET: objInfo[0],
+        EASING: 18,
+        EASING_RATE: 2,
+        SPAWN_TRIGGERED: true,
+        MULTI_TRIGGER: true,
+    })
+    $.add(obj { //add collision1 trigger
+        OBJ_ID: 1815,//collision trigger id
+        X: x2,
+        Y: y2,
+        BLOCK_A: objInfo[1],
+        BLOCK_B: f1(1b),
+        TARGET: group2,
+        ACTIVATE_GROUP: true,
+    })
+}
+function = (objectGroup = 0g, fullObjectCollisionGroup = 0b, velocityX = 0, velocityY = 0, weight = 0, duration = 1) {
+    if objectGroup == 0g {
+        return velocities 
+    } else {
+        velocities[objectGroup as @string] = [objectGroup, fullObjectCollisionGroup, velocityX, velocityY, weight, duration]
+        add([objectGroup, fullObjectCollisionGroup, velocityX, velocityY, weight, duration])
+        return velocities 
+    }
+}
+
+return function
