@@ -64,8 +64,8 @@ function = (objectGroup = 0g, fullObjectCollisionGroup = 0b, velocityX = 0, velo
     if objectGroup == 0g {
         return velocities 
     } else {
-        velocities[objectGroup as @string] = [objectGroup, fullObjectCollisionGroup, velocityX, velocityY, weight, duration]
-        add([objectGroup, fullObjectCollisionGroup, velocityX, velocityY, weight, duration])
+        velocities[objectGroup as @string] = [objectGroup, fullObjectCollisionGroup, velocityX, velocityY, weight, duration, spawnTrigger]
+        add([objectGroup, fullObjectCollisionGroup, velocityX, velocityY, weight, duration, spawnTrigger])
         return velocities 
     }
 }
