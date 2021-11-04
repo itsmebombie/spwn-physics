@@ -8,12 +8,25 @@ add = (objInfo) {
 
     group1 = ?g
     group2 = ?g
-    $.add(obj { //add spawn trigger, this trigger can be moved where you want the velocity to happen
-        OBJ_ID: 1268,//spawn trigger id
-        X: x5,
-        Y: y5,
-        TARGET: group1,
-    })
+    if objInfo[6] != 0g {
+        $.add(obj { //add spawn trigge
+            OBJ_ID: 1268,//spawn trigger id
+            X: x5,
+            Y: y5,
+            GROUPS: objInfo[6],
+            TARGET: group1,
+            SPAWN_TRIGGERED: true,
+            MULTI_TRIGGER: true,
+        })
+    } else {
+        $.add(obj { //add spawn trigger, this trigger can be moved where you want the velocity to happen
+            OBJ_ID: 1268,//spawn trigger id
+            X: x5,
+            Y: y5,
+            TARGET: group1,
+        })
+    }
+    
     $.add(obj { //add stop trigger
         OBJ_ID: 1616,//stop trigger id
         X: x4,
@@ -47,7 +60,7 @@ add = (objInfo) {
         ACTIVATE_GROUP: true,
     })
 }
-function = (objectGroup = 0g, fullObjectCollisionGroup = 0b, velocityX = 0, velocityY = 0, weight = 0, duration = 1) {
+function = (objectGroup = 0g, fullObjectCollisionGroup = 0b, velocityX = 0, velocityY = 0, weight = 0, duration = 1, spawn_trigger = 0g) {
     if objectGroup == 0g {
         return velocities 
     } else {
