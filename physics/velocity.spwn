@@ -41,7 +41,7 @@ add = (objInfo) {
         X: x1,
         Y: y1,
         DURATION: objInfo[5],
-        MOVE_X: (objInfo[2] * 10) - objInfo[4],
+        MOVE_X: (objInfo[2] * 10),
         MOVE_Y: (objInfo[3] * 10) - objInfo[4],
         GROUPS: group1,
         TARGET: objInfo[0],
