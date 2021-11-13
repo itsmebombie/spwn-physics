@@ -41,7 +41,7 @@ add = (objInfo) {
         X: x1,
         Y: y1,
         DURATION: objInfo[5],
-        MOVE_X: (objInfo[2] * 10),
+        MOVE_X: (objInfo[2] * 5),
         MOVE_Y: (objInfo[3] * 10) - objInfo[4],
         GROUPS: group1,
         TARGET: objInfo[0],
@@ -60,11 +60,11 @@ add = (objInfo) {
         ACTIVATE_GROUP: true,
     })
 }
-function = (objectGroup = 0g, fullObjectCollisionGroup = 0b, velocityX = 0, velocityY = 0, weight = 0, duration = 1, spawnTrigger = null) {
-    if objectGroup == 0g {
+function = (name = null, objectGroup = 0g, fullObjectCollisionGroup = 0b, velocityX = 0, velocityY = 0, weight = 0, duration = 1, spawnTrigger = null) {
+    if name == null {
         return velocities 
     } else {
-        velocities[objectGroup as @string] = [objectGroup, fullObjectCollisionGroup, velocityX, velocityY, weight, duration, spawnTrigger]
+        velocities[name as @string] = [objectGroup, fullObjectCollisionGroup, velocityX, velocityY, weight, duration, spawnTrigger]
         add([objectGroup, fullObjectCollisionGroup, velocityX, velocityY, weight, duration, spawnTrigger])
         return velocities 
     }
