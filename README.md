@@ -29,6 +29,7 @@ then, you must set the first collision block's block id to the "fullObjectsColli
 now you must set the last collision block's block id to the "staticObjectsCollisionGroup" collision group id, and merge the collision blocks into the corresponding objects like this:
 
 ![image](https://user-images.githubusercontent.com/92307212/139893181-f222d6ff-c61b-4a12-b13d-8491d16c7ab2.png)
+(you should also scale the bigger block to 0.97 and move it so it doesnt touch the bottom part of the block completely)
 
 now you only need to write code, build the script and you're done!
 here's an example to help with the writing code part:
